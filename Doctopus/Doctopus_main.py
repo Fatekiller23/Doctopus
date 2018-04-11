@@ -58,6 +58,7 @@ class Handler(object):
     def __init__(self, configuration):
         self.conf = configuration['user_conf']['handler']
         self.field_name_list = self.conf.get('field_name_list', [])
+        self.tags = self.conf.get('tags', None)
         self.table_name = self.conf.get('table_name', 'influxdb')
         self.unit = self.conf.get('unit', 's')
 
@@ -109,10 +110,15 @@ class Handler(object):
         else:
             fields = value_list
 
-        fields['tags'] = processed_dict.get('tags')
+        # make tags
+        fields['tags'] = processed_dict.get('tags', None)
+
+        if fields['tags'] is None:
+            fields['tags'] = self.tags
+        # send to influxdb must has "unit"
         fields['unit'] = self.unit
 
-        # send to influxdb must has "unit"
+        # make timestamp
         if self.unit == 's':
             timestamp = processed_dict.get('timestamp') or pendulum.now().int_timestamp
         else:
