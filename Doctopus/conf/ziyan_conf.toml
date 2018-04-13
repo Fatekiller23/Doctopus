@@ -14,6 +14,9 @@ paths = ['./conf/conf.toml', './lua/enque_script.lua', './plugins/your_plugin.py
     # 's' or 'u'
     unit = 's'
 
+        [user_conf.handler.tags]
+        eqpt_no = 'PEC0-1000'
+
 
 [sender]
     lua_path = 'lua/enque_script.lua'
