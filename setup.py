@@ -6,7 +6,7 @@ import sys
 if sys.version_info[0] == 3 and sys.version_info[1] >= 5:
     setup(
         name='Doctopus',
-        version='0.3.0',
+        version='0.3.2',
         author='',
         author_email='',
         description='A distributed data collector',
@@ -24,7 +24,7 @@ if sys.version_info[0] == 3 and sys.version_info[1] >= 5:
 else:
     setup(
         name='Doctopus',
-        version='0.3.0',
+        version='0.3.2',
         author='',
         author_email='',
         description='A distributed data collector',
