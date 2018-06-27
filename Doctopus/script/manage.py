@@ -22,10 +22,10 @@ from Doctopus.lib.logging_init import setup_logging
 from Doctopus.lib.transport import Transport
 from Doctopus.utils.util import get_conf
 
-if sys.version_info[0] == 3 and sys.version_info[1] >= 5:
-    from Doctopus.lib.communication import Communication
-else:
-    from Doctopus.lib.communication_2 import Communication
+# if sys.version_info[0] == 3 and sys.version_info[1] >= 5:
+#     from Doctopus.lib.communication import Communication
+# else:
+#     from Doctopus.lib.communication_2 import Communication
 
 log = getLogger("Doctopus.start")
 
@@ -46,7 +46,7 @@ def start_ziyan():
     checker = MyCheck(all_conf)
     handler = MyHandler(all_conf)
     sender = Sender(all_conf)
-    communication = Communication(all_conf)
+    # communication = Communication(all_conf)
 
     # name instances
     checker.name = 'checker'
@@ -66,7 +66,8 @@ def start_ziyan():
         thread_set[worker.name] = thread
 
     # init send set
-    send_set = [communication, sender]
+    # send_set = [communication, sender]
+    send_set = [sender]
     for send in send_set:
         thread = Thread(target=send.work, args=(queue,), name='%s' % send.name)
         thread.setDaemon(True)
@@ -100,10 +101,10 @@ def start_chitu():
         thread_set[work.name] = thread
 
     # start communication instance
-    communication = Communication(all_conf)
-    thread = Thread(target=communication.work, args=(), name='%s' % communication.name)
-    thread.setDaemon(True)
-    thread.start()
+    # communication = Communication(all_conf)
+    # thread = Thread(target=communication.work, args=(), name='%s' % communication.name)
+    # thread.setDaemon(True)
+    # thread.start()
 
     # start watch instance
     watch = WatchDog(all_conf)

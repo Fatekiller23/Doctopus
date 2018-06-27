@@ -6,14 +6,14 @@ import sys
 if sys.version_info[0] == 3 and sys.version_info[1] >= 5:
     setup(
         name='Doctopus',
-        version='0.3.2',
+        version='0.3.4',
         author='',
         author_email='',
         description='A distributed data collector',
         packages=find_packages(exclude=[]),
         include_package_data=True,
         license='MIT',
-        install_requires=['pendulum', 'redis',
+        install_requires=['redis',
                           'influxdb', 'msgpack-python', 'toml', 'python-etcd', 'falcon', 'waitress'],
         entry_points={
             'console_scripts': [
@@ -24,14 +24,14 @@ if sys.version_info[0] == 3 and sys.version_info[1] >= 5:
 else:
     setup(
         name='Doctopus',
-        version='0.3.2',
+        version='0.3.4',
         author='',
         author_email='',
         description='A distributed data collector',
         packages=find_packages(exclude=[]),
         include_package_data=True,
         license='MIT',
-        install_requires=['pendulum', 'redis', 'gevent', 'greenlet',
+        install_requires=['redis',
                           'influxdb', 'msgpack-python', 'toml', 'python-etcd', 'falcon', 'waitress'],
         entry_points={
             'console_scripts': [

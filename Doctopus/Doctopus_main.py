@@ -5,7 +5,8 @@ import types
 from abc import ABCMeta, abstractmethod
 from Doctopus.utils.util import get_conf
 
-import pendulum
+# import pendulum
+import time
 
 log = logging.getLogger("Doctopus.main")
 
@@ -120,9 +121,10 @@ class Handler(object):
 
         # make timestamp
         if self.unit == 's':
-            timestamp = processed_dict.get('timestamp') or pendulum.now().int_timestamp
+            # timestamp = processed_dict.get('timestamp') or pendulum.now().int_timestamp
+            timestamp = processed_dict.get('timestamp') or int(time.time())
         else:
-            timestamp = processed_dict.get('timestamp') or int(pendulum.now().float_timestamp * 1000000)
+            timestamp = processed_dict.get('timestamp') or int(time.time() * 1000000)
 
         # data to put in send
         data_dict = {

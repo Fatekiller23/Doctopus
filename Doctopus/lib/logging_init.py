@@ -5,10 +5,10 @@ import logging.handlers
 import os
 import sys
 
-if sys.version_info[0] == 3 and sys.version_info[1] >= 5:
-    from Doctopus.lib.communication import Communication
-else:
-    from Doctopus.lib.communication_2 import Communication
+# if sys.version_info[0] == 3 and sys.version_info[1] >= 5:
+#     from Doctopus.lib.communication import Communication
+# else:
+#     from Doctopus.lib.communication_2 import Communication
 
 from Doctopus.utils.util import get_conf
 
@@ -73,12 +73,12 @@ class ErrorRecord(logging.Handler):
     将日志保存在 Communication 类中，传输至远端
     """
     def __init__(self):
-        self.communication = Communication(get_conf())
+        # self.communication = Communication(get_conf())
         logging.Handler.__init__(self)
 
     def emit(self, record):
         msg = self.format(record)
-        self.communication.enqueue_log(msg)
+        # self.communication.enqueue_log(msg)
 
 
 def test():

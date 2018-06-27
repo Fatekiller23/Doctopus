@@ -5,10 +5,10 @@ import msgpack
 import time
 import sys
 
-if sys.version_info[0] == 3 and sys.version_info[1] >= 5:
-    from Doctopus.lib.communication import Communication
-else:
-    from Doctopus.lib.communication_2 import Communication
+# if sys.version_info[0] == 3 and sys.version_info[1] >= 5:
+#     from Doctopus.lib.communication import Communication
+# else:
+#     from Doctopus.lib.communication_2 import Communication
 from Doctopus.lib.database_wrapper import InfluxdbWrapper, RedisWrapper
 from Doctopus.utils.util import get_conf
 
@@ -21,7 +21,7 @@ class Transport:
         self.redis = RedisWrapper(redis_address)
         self.data_original = None
         self.name = None
-        self.communication = Communication(conf)
+        # self.communication = Communication(conf)
 
         if self.to_where == 'influxdb':
             self.db = InfluxdbWrapper(conf['influxdb'])
@@ -104,7 +104,7 @@ class Transport:
         if self.to_where == 'influxdb':
             time_precision = data[0].pop('unit')
             info = self.db.send(data, time_precision)
-            self.communication.data[data[0]["measurement"]] = data
+            # self.communication.data[data[0]["measurement"]] = data
             if info:
                 log.info('send data to inflxudb.{}, {}'.format(data[0]['measurement'], info))
             else:
