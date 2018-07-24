@@ -85,13 +85,14 @@ class Handler(object):
         data = None
         if isinstance(processed_dicts, (types.GeneratorType, list)):
             for processed_dict in processed_dicts:
+
                 data = self.process_dict(processed_dict)
+                self.sender_pipe.put(data)
 
         elif isinstance(processed_dicts, dict):
 
             data = self.process_dict(processed_dicts)
-
-        self.sender_pipe.put(data)
+            self.sender_pipe.put(data)
 
     def process_dict(self, processed_dict):
         """
